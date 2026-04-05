@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Kadiyam Keerthana - IT Student & Aspiring Full Stack Developer. Portfolio showcasing web development projects and skills." />
+<title>Kadiyam Keerthana | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:hsl(40,20%,98%);--fg:hsl(220,25%,12%);
+  --card:hsl(0,0%,100%);--card-fg:hsl(220,25%,12%);
+  --primary:hsl(174,72%,40%);--primary-fg:hsl(0,0%,100%);
+  --secondary:hsl(200,20%,94%);--secondary-fg:hsl(220,25%,20%);
+  --muted:hsl(210,15%,93%);--muted-fg:hsl(215,14%,46%);
+  --accent:hsl(262,60%,58%);--accent-fg:hsl(0,0%,100%);
+  --border:hsl(214,20%,88%);
+  --gradient-primary:linear-gradient(135deg,hsl(174,72%,40%),hsl(200,80%,50%));
+  --gradient-accent:linear-gradient(135deg,hsl(262,60%,58%),hsl(290,60%,55%));
+  --gradient-hero:linear-gradient(135deg,hsl(174,72%,95%),hsl(200,80%,95%),hsl(262,60%,95%));
+  --shadow-card:0 4px 24px -4px hsl(220 25% 12% / 0.08);
+  --shadow-card-hover:0 12px 40px -8px hsl(174 72% 40% / 0.18);
+}
+.dark{
+  --bg:hsl(222,30%,8%);--fg:hsl(210,20%,92%);
+  --card:hsl(222,25%,12%);--card-fg:hsl(210,20%,92%);
+  --primary:hsl(174,72%,45%);--primary-fg:hsl(0,0%,100%);
+  --secondary:hsl(222,20%,16%);--secondary-fg:hsl(210,20%,85%);
+  --muted:hsl(222,20%,16%);--muted-fg:hsl(215,15%,55%);
+  --accent:hsl(262,60%,62%);--accent-fg:hsl(0,0%,100%);
+  --border:hsl(222,20%,18%);
+  --gradient-primary:linear-gradient(135deg,hsl(174,72%,45%),hsl(200,80%,55%));
+  --gradient-accent:linear-gradient(135deg,hsl(262,60%,62%),hsl(290,60%,58%));
+  --gradient-hero:linear-gradient(135deg,hsl(222,30%,10%),hsl(222,30%,8%));
+  --shadow-card:0 4px 24px -4px hsl(0 0% 0% / 0.3);
+  --shadow-card-hover:0 12px 40px -8px hsl(174 72% 45% / 0.25);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
+
+/* Utility */
+.gradient-text{background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-heading{font-size:2rem;font-weight:700;color:var(--fg);margin-bottom:0.5rem}
+.section-subheading{color:var(--muted-fg);font-size:1.1rem;margin-bottom:0}
+.text-center{text-align:center}
+
+/* Glass Card */
+.glass-card{background:var(--card);border:1px solid var(--border);border-radius:0.75rem;padding:1.5rem;box-shadow:var(--shadow-card);transition:all 0.3s ease}
+.glass-card:hover{box-shadow:var(--shadow-card-hover);transform:translateY(-4px)}
+
+/* Buttons */
+.btn-primary{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:0.5rem;font-weight:600;color:var(--primary-fg);background:var(--gradient-primary);border:none;cursor:pointer;font-size:0.95rem;transition:all 0.3s;box-shadow:0 4px 15px hsl(174 72% 40% / 0.3);text-decoration:none}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px hsl(174 72% 40% / 0.4)}
+.btn-outline{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:0.5rem;font-weight:600;border:2px solid var(--primary);color:var(--primary);background:transparent;cursor:pointer;font-size:0.95rem;transition:all 0.3s;text-decoration:none}
+.btn-outline:hover{background:var(--primary);color:var(--primary-fg);transform:translateY(-2px)}
+.btn-sm{padding:0.5rem 1rem;font-size:0.85rem}
+
+/* Fade Animation */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease-out,transform 0.6s ease-out}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.animate-fade-in-up{animation:fadeInUp 0.6s ease-out both}
+@keyframes blink{0%,100%{border-color:var(--primary)}50%{border-color:transparent}}
+.typing-cursor{border-right:2px solid var(--primary);animation:blink 0.8s infinite}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:all 0.3s}
+nav.scrolled{background:hsl(from var(--bg) h s l / 0.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:0 1px 8px hsl(0 0% 0% / 0.05)}
+.nav-inner{max-width:64rem;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:4rem}
+.nav-logo{font-size:1.25rem;font-weight:700;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{font-size:0.875rem;font-weight:500;color:var(--muted-fg);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-btn{padding:0.5rem;border-radius:0.5rem;background:var(--secondary);color:var(--secondary-fg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.nav-btn:hover{background:var(--primary);color:var(--primary-fg)}
+.mobile-toggle,.mobile-menu{display:none}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .mobile-toggle{display:flex}
+  .mobile-menu{display:none;background:hsl(from var(--bg) h s l / 0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0.5rem 1rem 1rem}
+  .mobile-menu.open{display:block}
+  .mobile-menu a{display:block;padding:0.5rem 0;font-size:0.875rem;font-weight:500;color:var(--muted-fg);text-decoration:none;transition:color 0.2s}
+  .mobile-menu a:hover{color:var(--primary)}
+}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:5rem 1.5rem 3rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:var(--gradient-hero)}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.3;pointer-events:none}
+.hero-blob-1{top:25%;left:-5rem;width:20rem;height:20rem;background:hsl(174 72% 40% / 0.1)}
+.hero-blob-2{bottom:25%;right:-5rem;width:28rem;height:28rem;background:hsl(262 60% 58% / 0.1)}
+.hero-content{position:relative;z-index:10;text-align:center;max-width:48rem;width:100%}
+.hero-hello{color:var(--primary);font-family:'JetBrains Mono',monospace;font-size:0.875rem;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.1em}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1.25rem;color:var(--fg)}
+.hero-typed{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;color:var(--muted-fg);margin-bottom:1.5rem;min-height:2rem}
+.hero-desc{color:var(--muted-fg);font-size:0.95rem;max-width:28rem;margin:0 auto 2.5rem;line-height:1.7}
+.hero-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:0.75rem}
+
+/* SECTIONS */
+section{padding:5rem 1.5rem}
+.section-alt{background:hsl(from var(--secondary) h s l / 0.3)}
+.container{max-width:64rem;margin:0 auto}
+.section-header{text-align:center;margin-bottom:3.5rem}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+.about-text p{color:var(--muted-fg);font-size:0.95rem;line-height:1.7;margin-bottom:1rem}
+.highlight-card{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem}
+.highlight-icon{padding:0.625rem;border-radius:0.5rem;background:hsl(174 72% 40% / 0.1);color:var(--primary);flex-shrink:0;display:flex}
+.highlight-card h3{font-weight:600;font-size:0.95rem;color:var(--fg)}
+.highlight-card p{font-size:0.85rem;color:var(--muted-fg);margin-top:0.125rem}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.skill-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem}
+.skill-name{font-weight:600;font-size:0.95rem;color:var(--fg)}
+.skill-pct{font-size:0.75rem;font-family:'JetBrains Mono',monospace;color:var(--muted-fg);background:var(--muted);padding:0.125rem 0.5rem;border-radius:0.375rem}
+.skill-bar{width:100%;height:0.5rem;border-radius:9999px;background:var(--muted);overflow:hidden}
+.skill-fill{height:100%;border-radius:9999px;width:0;transition:width 1s ease-out}
+@media(max-width:768px){.skills-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.skills-grid{grid-template-columns:1fr}}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.project-thumb{height:10rem;border-radius:0.5rem;background:linear-gradient(135deg,hsl(174 72% 40% / 0.1),hsl(262 60% 58% / 0.1));display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
+.project-initial{font-size:3rem;font-weight:700;opacity:0.2;transition:opacity 0.3s}
+.glass-card:hover .project-initial{opacity:0.5}
+.project-title{font-size:1.1rem;font-weight:700;color:var(--fg);margin-bottom:0.375rem}
+.project-desc{font-size:0.85rem;color:var(--muted-fg);line-height:1.6;margin-bottom:1rem;flex:1}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1.25rem}
+.tag{font-size:0.75rem;font-family:'JetBrains Mono',monospace;padding:0.25rem 0.625rem;border-radius:9999px;background:hsl(174 72% 40% / 0.1);color:var(--primary)}
+.project-btns{display:flex;gap:0.75rem}
+@media(max-width:640px){.projects-grid{grid-template-columns:1fr}}
+
+/* EDUCATION */
+.edu-card{display:flex;align-items:flex-start;gap:1.25rem;max-width:42rem;margin:0 auto}
+.edu-icon{padding:0.75rem;border-radius:0.75rem;background:hsl(174 72% 40% / 0.1);color:var(--primary);flex-shrink:0;display:flex}
+.edu-card h3{font-size:1.1rem;font-weight:700;color:var(--fg);line-height:1.4}
+.edu-card p{color:var(--muted-fg);margin-top:0.5rem;font-size:0.95rem;line-height:1.6}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.service-icon{width:3.5rem;height:3.5rem;border-radius:0.75rem;background:hsl(174 72% 40% / 0.1);color:var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.service-title{font-size:1.1rem;font-weight:700;color:var(--fg);margin-bottom:0.5rem}
+.service-desc{font-size:0.85rem;color:var(--muted-fg);line-height:1.6}
+@media(max-width:640px){.services-grid{grid-template-columns:1fr}}
+
+/* CONTACT */
+.contact-form{max-width:32rem;margin:0 auto;display:flex;flex-direction:column;gap:1rem}
+.input-wrap{position:relative}
+.input-icon{position:absolute;left:0.875rem;top:1rem;color:var(--muted-fg);pointer-events:none}
+.form-input{width:100%;padding:0.875rem 1rem 0.875rem 2.75rem;border-radius:0.75rem;background:var(--card);border:1px solid var(--border);color:var(--fg);font-size:0.95rem;font-family:'Inter',sans-serif;transition:all 0.2s;outline:none}
+.form-input::placeholder{color:var(--muted-fg)}
+.form-input:focus{border-color:hsl(174 72% 40% / 0.4);box-shadow:0 0 0 3px hsl(174 72% 40% / 0.15)}
+textarea.form-input{resize:none;min-height:8rem}
+
+/* FOOTER */
+footer{padding:2rem 1.5rem;border-top:1px solid var(--border)}
+.footer-inner{max-width:64rem;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:0.875rem;color:var(--muted-fg);display:flex;align-items:center;gap:0.375rem}
+.footer-socials{display:flex;gap:0.5rem}
+.social-btn{padding:0.625rem;border-radius:0.5rem;background:hsl(from var(--secondary) h s l / 0.8);color:var(--muted-fg);border:none;cursor:pointer;display:flex;transition:all 0.2s}
+.social-btn:hover{color:var(--primary);background:hsl(174 72% 40% / 0.1)}
+
+/* SCROLL TO TOP */
+.scroll-top{position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;padding:0.75rem;border-radius:50%;background:var(--gradient-primary);color:var(--primary-fg);border:none;cursor:pointer;box-shadow:0 4px 15px hsl(174 72% 40% / 0.3);transition:all 0.3s;display:none}
+.scroll-top.show{display:flex}
+.scroll-top:hover{transform:scale(1.1)}
+
+/* SVG icons inline sizing */
+svg{display:inline-block;vertical-align:middle;width:1.125em;height:1.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.service-icon svg,.edu-icon svg{width:1.5em;height:1.5em}
+.hero-btns svg{width:1.125em;height:1.125em}
+
+@media(min-width:768px){
+  section{padding:6rem 2rem}
+  .section-heading{font-size:2.5rem}
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo gradient-text">KK</a>
+    <div class="nav-links" id="desktopNav">
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#services">Services</a><a href="#contact">Contact</a>
+      <button class="nav-btn" id="themeToggleDesktop" aria-label="Toggle theme">
+        <svg id="moonIcon"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        <svg id="sunIcon" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+    <div style="display:flex;gap:0.5rem" class="mobile-only">
+      <button class="nav-btn mobile-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+        <svg class="moon-m"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        <svg class="sun-m" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button class="nav-btn mobile-toggle" id="menuToggle" aria-label="Menu">
+        <svg id="menuIcon"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="closeIcon" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#services">Services</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-content">
+    <p class="hero-hello animate-fade-in-up">Hello, I'm</p>
+    <h1 class="animate-fade-in-up" style="animation-delay:0.1s">Kadiyam <span class="gradient-text">Keerthana</span></h1>
+    <div class="hero-typed animate-fade-in-up" style="animation-delay:0.2s">
+      <span id="typedText"></span><span class="typing-cursor">&nbsp;</span>
+    </div>
+    <p class="hero-desc animate-fade-in-up" style="animation-delay:0.3s">A passionate student learning web development and building modern web applications step by step.</p>
+    <div class="hero-btns animate-fade-in-up" style="animation-delay:0.4s">
+      <a href="#projects" class="btn-primary"><svg><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg> View Projects</a>
+      <a href="#" class="btn-outline" style="border-color:var(--accent);color:var(--accent)" onclick="alert('Resume download will be available soon!');return false"><svg><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download Resume</a>
+          <a href="#contact" class="btn-outline"><svg><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-heading">About <span class="gradient-text">Me</span></h2>
+      <p class="section-subheading">Get to know me better</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>I'm an IT student with a deep interest in web development and a drive to grow as a full-stack developer. I enjoy turning ideas into reality through clean, user-friendly interfaces.</p>
+        <p>My journey in tech started with curiosity and has grown into a commitment to continuous learning. I focus on building projects that solve real problems while refining my skills with every line of code.</p>
+      </div>
+      <div class="fade-up" style="transition-delay:0.15s;display:flex;flex-direction:column;gap:1rem">
+        <div class="glass-card highlight-card">
+          <div class="highlight-icon"><svg><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div><h3>Clean Code</h3><p>Writing well-structured, maintainable code</p></div>
+        </div>
+        <div class="glass-card highlight-card">
+          <div class="highlight-icon"><svg><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <div><h3>Always Learning</h3><p>Continuously expanding my tech skills</p></div>
+        </div>
+        <div class="glass-card highlight-card">
+          <div class="highlight-icon"><svg><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+          <div><h3>Problem Solver</h3><p>Breaking complex problems into simple solutions</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-heading">My <span class="gradient-text">Skills</span></h2>
+      <p class="section-subheading">Technologies I work with</p>
+    </div>
+    <div class="skills-grid">
+      <div class="glass-card fade-up" style="transition-delay:0s"><div class="skill-header"><span class="skill-name">HTML</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90" style="background:linear-gradient(90deg,hsl(12,77%,52%),hsl(12,77%,52%,0.8))"></div></div></div>
+      <div class="glass-card fade-up" style="transition-delay:0.08s"><div class="skill-header"><span class="skill-name">CSS</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85" style="background:linear-gradient(90deg,hsl(205,87%,50%),hsl(205,87%,50%,0.8))"></div></div></div>
+      <div class="glass-card fade-up" style="transition-delay:0.16s"><div class="skill-header"><span class="skill-name">JavaScript</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill" data-width="75" style="background:linear-gradient(90deg,hsl(48,89%,50%),hsl(48,89%,50%,0.8))"></div></div></div>
+      <div class="glass-card fade-up" style="transition-delay:0.24s"><div class="skill-header"><span class="skill-name">Git</span><span class="skill-pct">70%</span></div><div class="skill-bar"><div class="skill-fill" data-width="70" style="background:linear-gradient(90deg,hsl(10,68%,50%),hsl(10,68%,50%,0.8))"></div></div></div>
+      <div class="glass-card fade-up" style="transition-delay:0.32s"><div class="skill-header"><span class="skill-name">GitHub</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-fill" data-width="75" style="background:linear-gradient(90deg,hsl(220,10%,50%),hsl(220,10%,50%,0.8))"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-heading">My <span class="gradient-text">Projects</span></h2>
+      <p class="section-subheading">Things I've built</p>
+    </div>
+    <div class="projects-grid">
+      <div class="glass-card fade-up" style="display:flex;flex-direction:column">
+        <div class="project-thumb"><span class="project-initial gradient-text">P</span></div>
+        <h3 class="project-title">Portfolio Website</h3>
+        <p class="project-desc">A modern personal portfolio showcasing projects, skills, and experience with a clean responsive design.</p>
+        <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        <div class="project-btns"><button class="btn-primary btn-sm"><svg><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Live Demo</button><button class="btn-outline btn-sm"><svg><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> Source Code</button></div>
+      </div>
+      <div class="glass-card fade-up" style="display:flex;flex-direction:column;transition-delay:0.08s">
+        <div class="project-thumb"><span class="project-initial gradient-text">L</span></div>
+        <h3 class="project-title">Landing Page</h3>
+        <p class="project-desc">A sleek, conversion-focused landing page with smooth animations and a mobile-first approach.</p>
+        <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Responsive</span></div>
+        <div class="project-btns"><button class="btn-primary btn-sm"><svg><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Live Demo</button><button class="btn-outline btn-sm"><svg><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> Source Code</button></div>
+      </div>
+      <div class="glass-card fade-up" style="display:flex;flex-direction:column;transition-delay:0.16s">
+        <div class="project-thumb"><span class="project-initial gradient-text">C</span></div>
+        <h3 class="project-title">Calculator App</h3>
+        <p class="project-desc">A functional calculator with a beautiful UI supporting basic arithmetic operations and keyboard input.</p>
+        <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">CSS Grid</span><span class="tag">Logic</span></div>
+        <div class="project-btns"><button class="btn-primary btn-sm"><svg><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Live Demo</button><button class="btn-outline btn-sm"><svg><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> Source Code</button></div>
+      </div>
+      <div class="glass-card fade-up" style="display:flex;flex-direction:column;transition-delay:0.24s">
+        <div class="project-thumb"><span class="project-initial gradient-text">T</span></div>
+        <h3 class="project-title">To-Do App</h3>
+        <p class="project-desc">A task management application with add, edit, delete, and filter functionality using local storage.</p>
+        <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">DOM</span><span class="tag">LocalStorage</span></div>
+        <div class="project-btns"><button class="btn-primary btn-sm"><svg><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Live Demo</button><button class="btn-outline btn-sm"><svg><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> Source Code</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-heading">My <span class="gradient-text">Education</span></h2>
+      <p class="section-subheading">Academic background</p>
+    </div>
+    <div class="fade-up">
+      <div class="glass-card edu-card" style="padding:1.5rem 2rem">
+        <div class="edu-icon"><svg><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg></div>
+        <div>
+          <h3>Bachelor of Technology — Information Technology</h3>
+          <p>Currently pursuing my degree with a focus on software development, data structures, and web technologies. Actively participating in coding challenges and building hands-on projects.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-heading">My <span class="gradient-text">Services</span></h2>
+      <p class="section-subheading">What I can do for you</p>
+    </div>
+    <div class="services-grid">
+      <div class="glass-card text-center fade-up" style="padding:2rem">
+        <div class="service-icon"><svg><path d="M12 19V5"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="2"/></svg></div>
+        <h3 class="service-title">Web Design</h3>
+        <p class="service-desc">Creating visually appealing and intuitive user interfaces with modern design principles.</p>
+      </div>
+      <div class="glass-card text-center fade-up" style="padding:2rem;transition-delay:0.1s">
+        <div class="service-icon"><svg><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3 class="service-title">Frontend Development</h3>
+        <p class="service-desc">Building interactive, performant web applications with clean and maintainable code.</p>
+      </div>
+      <div class="glass-card text-center fade-up" style="padding:2rem;transition-delay:0.2s">
+        <div class="service-icon"><svg><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <h3 class="service-title">Responsive Design</h3>
+        <p class="service-desc">Ensuring seamless experiences across all devices — mobile, tablet, and desktop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2 class="section-heading">Get In <span class="gradient-text">Touch</span></h2>
+      <p class="section-subheading">Let's work together</p>
+    </div>
+    <form class="contact-form fade-up" id="contactForm">
+      <div class="input-wrap">
+        <svg class="input-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <input type="text" class="form-input" placeholder="Your Name" required />
+      </div>
+      <div class="input-wrap">
+        <svg class="input-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <input type="email" class="form-input" placeholder="Your Email" required />
+      </div>
+      <div class="input-wrap">
+        <svg class="input-icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <textarea class="form-input" placeholder="Your Message" required></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:0.875rem;border-radius:0.75rem">Send Message <svg><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p class="footer-copy">© 2026 Kadiyam Keerthana. Made with <svg style="width:0.875em;height:0.875em;color:var(--primary);fill:var(--primary)"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></p>
+    <div class="footer-socials">
+      <button class="social-btn" aria-label="GitHub"><svg><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></button>
+      <button class="social-btn" aria-label="LinkedIn"><svg><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></button>
+      <button class="social-btn" aria-label="Twitter"><svg><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></button>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+  <svg><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</button>
+
+<script>
+(function(){
+  // Typing animation
+  const words=["Web Developer","Learner","Creator","Problem Solver"];
+  let wi=0,ci=0,del=false;
+  const el=document.getElementById("typedText");
+  function type(){
+    const w=words[wi];
+    if(!del){el.textContent=w.slice(0,++ci);if(ci===w.length){setTimeout(()=>{del=true;type()},2000);return}}
+    else{el.textContent=w.slice(0,--ci);if(ci===0){del=false;wi=(wi+1)%words.length}}
+    setTimeout(type,del?40:80);
+  }
+  type();
+
+  // Scroll: navbar + scroll-to-top
+  const nav=document.getElementById("navbar"),stb=document.getElementById("scrollTopBtn");
+  window.addEventListener("scroll",()=>{
+    nav.classList.toggle("scrolled",window.scrollY>20);
+    stb.classList.toggle("show",window.scrollY>400);
+  });
+  stb.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+  // Dark mode
+  let dark=false;
+  function toggle(){
+    dark=!dark;
+    document.documentElement.classList.toggle("dark",dark);
+    document.querySelectorAll(".moon-m,#moonIcon").forEach(e=>e.style.display=dark?"none":"inline-block");
+    document.querySelectorAll(".sun-m,#sunIcon").forEach(e=>e.style.display=dark?"inline-block":"none");
+  }
+  document.getElementById("themeToggleDesktop").addEventListener("click",toggle);
+  document.getElementById("themeToggleMobile").addEventListener("click",toggle);
+
+  // Mobile menu
+  const mm=document.getElementById("mobileMenu"),mi=document.getElementById("menuIcon"),ci2=document.getElementById("closeIcon");
+  document.getElementById("menuToggle").addEventListener("click",()=>{
+    const open=mm.classList.toggle("open");
+    mi.style.display=open?"none":"inline-block";
+    ci2.style.display=open?"inline-block":"none";
+  });
+  mm.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
+    mm.classList.remove("open");mi.style.display="inline-block";ci2.style.display="none";
+  }));
+
+  // Scroll animations (fade-up + skill bars)
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add("visible");
+        e.target.querySelectorAll(".skill-fill").forEach(f=>f.style.width=f.dataset.width+"%");
+      }
+    });
+  },{threshold:0.1,rootMargin:"0px 0px -50px 0px"});
+  document.querySelectorAll(".fade-up").forEach(e=>obs.observe(e));
+
+  // Contact form
+  document.getElementById("contactForm").addEventListener("submit",function(e){
+    e.preventDefault();alert("Thank you for your message! I'll get back to you soon.");this.reset();
+  });
+
+  // mobile-only visibility
+  const style=document.createElement("style");
+  style.textContent="@media(min-width:769px){.mobile-only{display:none!important}}";
+  document.head.appendChild(style);
+})();
+</script>
+</body>
+</html>
